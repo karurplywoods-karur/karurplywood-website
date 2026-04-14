@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0E0B08;
+  --bg2: #161009;
+  --surface: #1C140D;
+  --surface2: #241A10;
+  --wood: #C8884A;
+  --wood-light: #E0A86A;
+  --wood-pale: #F5E6CC;
+  --wood-deep: #8B5E2A;
+  --wa: #25D366;
+  --wa-dark: #128C7E;
+  --accent: #E8B820;
+  --text: #F0E8DC;
+  --text-muted: #9A8070;
+  --text-soft: #C8B8A0;
+  --border: rgba(200,136,74,0.15);
+  --border2: rgba(200,136,74,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--wood-deep); border-radius: 3px; }
+
+.font-display { font-family: 'Cormorant Garamond', serif; }
+
+/* Fade-in animation for page transitions */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease both; }
+
+/* WhatsApp pulse */
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+  50%      { box-shadow: 0 8px 40px rgba(37,211,102,0.65); }
+}
+.wa-pulse { animation: waPulse 2.5s ease-in-out infinite; }
+
+/* Grain texture overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  border-color: rgba(200,136,74,0.35) !important;
+}
