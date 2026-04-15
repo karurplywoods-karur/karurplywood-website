@@ -35,8 +35,7 @@ const S: React.CSSProperties = { // section style
 };
 const SI = { maxWidth: 1200, margin: '0 auto', padding: '0 48px' } as const;
 
-#export default function HomePage() {
-#  const reviews = getReviews();
+export default function HomePage() {
 
   return (
     <>
