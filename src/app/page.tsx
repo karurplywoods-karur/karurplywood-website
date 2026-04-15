@@ -1,7 +1,6 @@
 // src/app/page.tsx
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getDb } from '@/lib/db';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import ReviewForm from '@/components/ReviewForm';
 import EnquiryForm from '@/components/EnquiryForm';
@@ -11,23 +10,33 @@ export const metadata: Metadata = {
   description: "Karur's most trusted wholesale & retail plywood shop. Premium plywood, doors, laminates & hardware. 25+ years of trust. Get instant WhatsApp quote.",
 };
 
+const reviews = [
+  {
+    id: 1,
+    name: "Ramesh Kumar",
+    rating: 5,
+    message: "Best plywood shop in Karur. Good quality and price.",
+    role: "Contractor"
+  },
+  {
+    id: 2,
+    name: "Suresh Builders",
+    rating: 5,
+    message: "Very competitive pricing. Highly recommended.",
+    role: "Builder"
+  }
+];
+
 const WA = process.env.NEXT_PUBLIC_WA_NUMBER || '919999999999';
 const GMAPS = process.env.NEXT_PUBLIC_GMAPS_EMBED_URL || '';
-
-function getReviews() {
-  try {
-    const db = getDb();
-    return db.prepare(`SELECT * FROM reviews WHERE approved=1 ORDER BY created_at DESC LIMIT 6`).all() as any[];
-  } catch { return []; }
-}
 
 const S: React.CSSProperties = { // section style
   padding: '96px 0',
 };
 const SI = { maxWidth: 1200, margin: '0 auto', padding: '0 48px' } as const;
 
-export default function HomePage() {
-  const reviews = getReviews();
+#export default function HomePage() {
+#  const reviews = getReviews();
 
   return (
     <>
